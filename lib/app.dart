@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'styles.dart';
+
 import 'pages/home_page.dart';
 import 'pages/counter_page.dart';
 
@@ -18,6 +21,12 @@ class App extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
+        appBarTheme: AppBarTheme(
+          textTheme: TextTheme(
+            title: AppBarTitleStyle
+          ),
+          color: Colors.black
+        ),
         primarySwatch: Colors.green,
       ),
       home: HomePage(),
