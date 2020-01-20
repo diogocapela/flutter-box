@@ -26,11 +26,11 @@ class TextBox extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.fromLTRB(_horizontalPadding, _verticalPadding, _horizontalPadding, 0.0),
-          child: Text(_title)
+          child: Text(_title, style: Theme.of(context).textTheme.title)
         ),
         Container(
           padding: const EdgeInsets.fromLTRB(_horizontalPadding, 0.0, _horizontalPadding, _verticalPadding),
-          child: Text(_description)
+          child: Text(_description, style: Theme.of(context).textTheme.body1)
         ),
       ],
     );

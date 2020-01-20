@@ -65,7 +65,7 @@ flutter:
           style: italic
     - family: Permanent Marker
       fonts:
-        - asset: assets/fonts/PermanentMarker/PermanentMarker.ttf
+        - asset: assets/fonts/PermanentMarker/PermanentMarker-Regular.ttf
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

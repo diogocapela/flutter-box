@@ -2,34 +2,51 @@ import 'package:flutter/material.dart';
 
 import 'styles.dart';
 
-import 'pages/home_page.dart';
-import 'pages/counter_page.dart';
+import 'routes/articles.dart';
+import 'routes/article.dart';
+
+const ArticlesRoute = '/';
+const ArticleRoute = '/article';
 
 class App extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter BOX',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
+      onGenerateRoute: _routes(),
+      theme: _theme(),
+    );
+  }
+
+  RouteFactory _routes() {
+    return (settings) {
+      final Map<String, dynamic> arguments = settings.arguments;
+      Widget screen;
+      switch(settings.name) {
+        case '/':
+          screen = ArticlesPage();
+          break;
+        case '/article':
+          screen = ArticlePage(arguments['slug']);
+          break;
+        default:
+          return null;
+      }
+
+      return MaterialPageRoute(builder: (context) => screen);
+    };
+  }
+
+  ThemeData _theme() {
+    return ThemeData(
         appBarTheme: AppBarTheme(
           textTheme: TextTheme(
             title: AppBarTitleStyle
           ),
           color: Colors.black
         ),
+        textTheme: TextTheme(title: TitleTextStyle, body1: Body1TextStyle),
         primarySwatch: Colors.green,
-      ),
-      home: HomePage(),
-    );
+      );
   }
 }
