@@ -10,7 +10,8 @@ class Article {
   final String publishedAt;
   final Source source;
 
-  Article(this.slug, this.title, this.description, this.content, this.url, this.imageUrl, this.publishedAt, this.source);
+  Article(this.slug, this.title, this.description, this.content, this.url,
+      this.imageUrl, this.publishedAt, this.source);
 
   static List<Article> fetchAll() {
     return [
@@ -50,12 +51,12 @@ class Article {
   static Article fetchBySlug(String articleSlug) {
     List<Article> articles = Article.fetchAll();
 
-    for(var i = 0; i < articles.length; i++) {
+    for (var i = 0; i < articles.length; i++) {
       if (articles[i].slug == articleSlug) {
         return articles[i];
       }
     }
-  
+
     return null;
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'styles.dart';
+
+import 'state/global_state.dart';
 
 import 'routes/articles.dart';
 import 'routes/article.dart';
@@ -11,10 +14,13 @@ const ArticleRoute = '/article';
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter BOX',
-      onGenerateRoute: _routes(),
-      theme: _theme(),
+    return ChangeNotifierProvider(
+      create: (context) => GlobalState(),
+      child: MaterialApp(
+        title: 'Flutter BOX',
+        onGenerateRoute: _routes(),
+        theme: _theme(),
+      ),
     );
   }
 
@@ -22,7 +28,8 @@ class App extends StatelessWidget {
     return (settings) {
       final Map<String, dynamic> arguments = settings.arguments;
       Widget screen;
-      switch(settings.name) {
+
+      switch (settings.name) {
         case '/':
           screen = ArticlesPage();
           break;
@@ -39,14 +46,10 @@ class App extends StatelessWidget {
 
   ThemeData _theme() {
     return ThemeData(
-        appBarTheme: AppBarTheme(
-          textTheme: TextTheme(
-            title: AppBarTitleStyle
-          ),
-          color: Colors.black
-        ),
-        textTheme: TextTheme(title: TitleTextStyle, body1: Body1TextStyle),
-        primarySwatch: Colors.green,
-      );
+      appBarTheme: AppBarTheme(
+          textTheme: TextTheme(title: AppBarTitleStyle), color: Colors.black),
+      textTheme: TextTheme(title: TitleTextStyle, body1: Body1TextStyle),
+      primarySwatch: Colors.green,
+    );
   }
 }
